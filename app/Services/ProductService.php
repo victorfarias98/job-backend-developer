@@ -42,10 +42,15 @@ class ProductService
         try {
             $response = $this->client->get('https://fakestoreapi.com/products/'.$id);
             $productsData = json_decode($response->getBody()->getContents(), true);
+            $product = [
+                'name' => $productsData['title'],
+                'description' => $productsData['description'],
+                'price' => $productsData['price'],
+                'category' => $productsData['category'],
+                'image_url' => $productsData['image']
+            ];
+            $this->productRepository->createOrUpdate($product, $productsData['id']);
 
-            foreach ($productsData as $productData) {
-                $this->productRepository->createOrUpdate($productData, $productData['id']);
-            }
 
             return true;
         } catch (\Exception $e) {

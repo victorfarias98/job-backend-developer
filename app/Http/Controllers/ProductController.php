@@ -110,7 +110,7 @@ class ProductController extends Controller
     public function findById(Request $request, $id): JsonResponse
     {
         try{
-            $product = $this->productRepository->findById($id);
+            $product = $this->productRepository->find($id);
 
             return response()->json($product);
         } catch (\Exception $e) {

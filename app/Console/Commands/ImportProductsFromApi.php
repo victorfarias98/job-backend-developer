@@ -9,7 +9,7 @@ class ImportProductsFromApi extends Command
 {
     protected $signature = 'products:import {id?}';
 
-    protected $description = 'Import products data from the API';
+    protected $description = 'Import products data from the Fake Products API';
 
     protected $productService;
 
@@ -28,15 +28,15 @@ class ImportProductsFromApi extends Command
             $result = $this->productService->importSingleProductFromApiAndSave($productId);
 
             if ($result) {
-                $this->info("Product with ID $productId updated successfully.");
+                $this->info("Product with ID $productId imported successfully.");
             } else {
-                $this->error("Failed to update product with ID $productId.");
+                $this->error("Failed to import product with ID $productId.");
             }
         } else {
             $result = $this->productService->importProductsFromApiAndSave();
 
             if ($result) {
-                $this->info('Products data updated successfully.');
+                $this->info('Products data imported successfully.');
             } else {
                 $this->error('Failed to update products data.');
             }

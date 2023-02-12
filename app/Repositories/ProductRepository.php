@@ -127,12 +127,4 @@ class ProductRepository
         }
     }
 
-    public function findById($id)
-    {
-        try {
-            return Product::find($id);
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
 }
